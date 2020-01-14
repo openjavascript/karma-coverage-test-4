@@ -1,6 +1,6 @@
 {
-  "name": "npm-karma",
-  "description": "A Vue.js project",
+  "name": "karma-coverage-test-4",
+  "description": "karma + mocha + coverage +  webpack4 ",
   "version": "1.0.0",
   "author": "",
   "license": "MIT",
