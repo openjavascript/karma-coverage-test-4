@@ -1,6 +1,7 @@
 
 // Import the mount() method from the test utils
 // and the component you want to test
+import Vue from 'vue'
 import { mount } from '@vue/test-utils'
 import Counter from '@/components/Counter.vue'
 

@@ -1,6 +1,7 @@
 var path = require("path")
 var webpack = require("webpack")
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 function resolve(dir) {
 
@@ -8,6 +9,7 @@ function resolve(dir) {
 }
 
 var webpackConfig = {
+    mode: 'development',
 
     module: {
 
@@ -20,11 +22,12 @@ var webpackConfig = {
                 include: [resolve('src'), resolve('test')]
             },
 
+
             // 为了统计代码覆盖率，对 js 文件加入 istanbul-instrumenter-loader
             {
                 test: /\.(js)$/,
-                exclude: /node_modules/,
-                include: /src|packages/,
+                exclude: /(node_modules|src)/,
+                include: /(test)/,
                 enforce: 'post',
                 use: [{
                     loader: "istanbul-instrumenter-loader",
@@ -38,18 +41,7 @@ var webpackConfig = {
             {
                 test: /\.vue$/,
                 use: [{
-                    loader: 'vue-loader',
-                    options: {
-                        loaders: {
-                            js: 'babel-loader'
-                        },
-
-                        // 为了统计代码覆盖率，对 vue 文件加入 istanbul-instrumenter-loader
-                        preLoaders: {
-                            js: 'istanbul-instrumenter-loader?esModules=true'
-                        }
-                    }
-                }]
+                    loader: 'vue-loader'                }]
             },
 
             // css loader
@@ -86,9 +78,10 @@ var webpackConfig = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: '"production"'
+                NODE_ENV: '"development"'
             }
-        })
+        }),
+        new VueLoaderPlugin()
     ]
 }
 
