@@ -25,7 +25,7 @@ var webpackConfig = {
 
             // 为了统计代码覆盖率，对 js 文件加入 istanbul-instrumenter-loader
             {
-                test: /\.(js)$/,
+                test: /\.spec\.(js)$/,
                 exclude: /(node_modules|src)/,
                 include: /(test)/,
                 enforce: 'post',
